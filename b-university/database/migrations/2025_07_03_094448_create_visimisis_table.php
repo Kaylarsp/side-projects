@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cooperations', function (Blueprint $table) {
+        Schema::create('visimisis', function (Blueprint $table) {
             $table->id();
+            $table->text('visi');
+            $table->text('misi');
             $table->text('image');
             $table->timestamps();
         });
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cooperations');
+        Schema::dropIfExists('visimisis');
     }
 };

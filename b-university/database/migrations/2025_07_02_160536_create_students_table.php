@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cooperations', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('namalengkap', 255);
+            $table->string('namapanggilan', 255);
+            $table->string('email', 255);
+            $table->string('nomor_hp', 15);
+            $table->string('jalur', 255);
             $table->text('image');
+            $table->string('programstudi_1', 255);
+            $table->string('programstudi_2', 255);
             $table->timestamps();
         });
     }
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cooperations');
+        Schema::dropIfExists('students');
     }
 };
