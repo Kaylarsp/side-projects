@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\VisimisiResource\Pages;
 use App\Filament\Resources\VisimisiResource\RelationManagers;
 use App\Models\Visimisi;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -23,14 +25,18 @@ class VisimisiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('visi')
+                TinyEditor::make('visi')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('misi')
+                TinyEditor::make('misi')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('image')
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->multiple()
                     ->required()
+                    ->maxFiles(3)
+                    ->minFiles(3)
                     ->columnSpanFull(),
             ]);
     }
@@ -39,6 +45,15 @@ class VisimisiResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('visi')
+                ->wrap()
+                ->html()
+                ->searchable(),
+                Tables\Columns\TextColumn::make('misi')
+                ->wrap()
+                ->html()
+                ->searchable(),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
