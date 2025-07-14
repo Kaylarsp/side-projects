@@ -38,6 +38,11 @@ class HistoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('content')
+                    ->wrap()
+                    ->html()
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
