@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class VisimisiController extends Controller
 {
     public function index() {
-        $visimisi = Visimisi::all();
+        $visimisi = Visimisi::first();
 
         if ($visimisi) {
             $visi = $visimisi->visi;
@@ -21,6 +21,8 @@ class VisimisiController extends Controller
             $visimisiImg = [];
         }
 
-        return view('visimisi', compact('visi', 'misi', 'visimisiImg'));
+        $visimisis = $visimisi;
+        
+        return view('visimisi', compact('visi', 'misi', 'visimisiImg', 'visimisis'));
     }
 }

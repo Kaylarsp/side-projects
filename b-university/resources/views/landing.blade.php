@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('content')
+@section('content')
 
 <!-- HERO SECTION -->
 <section class="container min-h-[90vh] relative mt-28">
@@ -97,15 +97,19 @@
         </div>
         <div class="relative">
             <div class="grid grid-cols-2 gap-6 w-fit">
-                @if (isset($abouts->image[0]))
-                    <img src="{{ asset('storage/' . $abouts->image[0]) }}" alt="Illustration 1" />
-                @endif
-                @if (isset($abouts->image[1]))
-                    <img src="{{ asset('storage/' . $abouts->image[1]) }}" alt="Illustration 2" />
-                @endif
-                @if (isset($abouts->image[2]))
-                    <img class="col-span-2" src="{{ asset('storage/' . $abouts->image[2]) }}" alt="Illustration 3" />
-                @endif
+                @foreach ($abouts as $about)
+                    @if (isset($about->image[0]))
+                        <img src="{{ asset('storage/' . $about->image[0]) }}" alt="Illustration 1" />
+                    @endif
+                    @if (isset($about->image[1]))
+                        <img src="{{ asset('storage/' . $about->image[1]) }}" alt="Illustration 2" />
+                    @endif
+                    @if (isset($about->image[2]))
+                        <img class="col-span-2" src="{{ asset('storage/' . $about->image[2]) }}" alt="Illustration 3" />
+                    @endif
+                @endforeach
+                    
+                
             </div>
             <img class="absolute -bottom-32 -left-36 -z-10" src="/assets/images/elipse-1.svg" alt="" />
             <img class="absolute -top-24 -right-16 -z-10" src="/assets/images/elipse-2.svg" alt="" />

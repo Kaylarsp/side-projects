@@ -66,9 +66,13 @@ class StudentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jalur')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('programstudi_1')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('image')
+                    ->label('Foto')
+                    ->html()
+                    ->formatStateUsing(
+                        fn($state, $record) =>
+                        '<img src="' . asset('storage/uploads/student/' . rawurlencode($record->image)) . '" alt="Foto" style="max-height: 60px; border-radius: 5px;" />'
+                    ),
                 Tables\Columns\TextColumn::make('programstudi_2')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
